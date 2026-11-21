@@ -130,10 +130,6 @@ Pages talk to the server through `fetch` requests exchanging JSON.
 - [Poppins](https://fonts.google.com/specimen/Poppins) font (Google Fonts, SIL Open Font License) for the rules page.
 - The 15-puzzle was invented by Noyes Palmer Chapman in the 19th century.
 
-## 📄 License
-
-Code released under the [MIT](LICENSE) license. Fonts remain subject to their authors' licenses.
-
 ## 👤 Author
 
 **Dario Falaschi** — [@Dariofala](https://github.com/Dariofala)
