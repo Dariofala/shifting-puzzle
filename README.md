@@ -3,7 +3,6 @@
 ![PHP](https://img.shields.io/badge/PHP-7.4+-777BB4?logo=php&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL%20%2F%20MariaDB-4479A1?logo=mysql&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-vanilla-F7DF1E?logo=javascript&logoColor=black)
-![License](https://img.shields.io/badge/license-MIT-green)
 
 The classic **15-puzzle** in the browser, with user accounts, saved games and a leaderboard of the best times.
 Built for the **Web Design** course (*Progettazione Web*) of the BSc in Computer Engineering, University of Pisa.
