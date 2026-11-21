@@ -1,0 +1,46 @@
+/* Pagina con le regole del gioco */
+
+body {
+  margin: 0;
+  padding: 24px 16px 40px;
+  background-color: black;
+  color: white;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+}
+
+#titolo {
+  margin-top: 0;
+  font-size: 45px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #7ed957;
+}
+
+h2 {
+  margin-top: 32px;
+  font-weight: 800;
+  color: #7ed957;
+}
+
+strong {
+  font-weight: 800;
+}
+
+.saluto {
+  margin-top: 32px;
+  font-size: 20px;
+}
+
+@media (max-width: 600px) {
+  #titolo {
+    font-size: 32px;
+  }
+}

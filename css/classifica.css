@@ -1,0 +1,94 @@
+/* Pagina della classifica */
+
+@font-face {
+  font-family: 'Adumu';
+  src: url('../font/Adumu.ttf') format('truetype');
+  font-display: swap;
+}
+
+:root {
+  --verde: #7ed957;
+}
+
+body {
+  margin: 0;
+  padding: 40px 16px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: black;
+  background-image: url('../immagini/Background_Gioco.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Adumu', 'Arial Black', sans-serif;
+}
+
+h1 {
+  margin: 0 0 30px;
+  text-align: center;
+  font-size: 50px;
+  color: var(--verde);
+}
+
+.contenitore-tabella {
+  width: min(75%, 1000px);
+  margin: auto;
+  overflow-x: auto;
+}
+
+#classifica {
+  width: 100%;
+  border-spacing: 2px;
+}
+
+th,
+td {
+  border-radius: 10px;
+  text-align: center;
+}
+
+th {
+  height: 90px;
+  font-size: 35px;
+}
+
+td {
+  font-size: 30px;
+}
+
+tr {
+  height: 70px;
+  background-color: var(--verde);
+}
+
+#intestazione {
+  background-color: green;
+}
+
+.messaggio {
+  text-align: center;
+  font-size: 24px;
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .contenitore-tabella {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  th {
+    height: 60px;
+    font-size: 18px;
+  }
+
+  td {
+    font-size: 18px;
+  }
+
+  tr {
+    height: 50px;
+  }
+}

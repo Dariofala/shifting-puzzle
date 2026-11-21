@@ -1,0 +1,406 @@
+/* Pagina del gioco */
+
+@font-face {
+  font-family: 'Adumu';
+  src: url('../font/Adumu.ttf') format('truetype');
+  font-display: swap;
+}
+
+:root {
+  --verde: #7ed957;
+  --beige: #B8AD9F;
+  --grigio: #818181;
+  --cella: 110px;   /* lato di una casella, bordo compreso */
+  --spazio: 25px;   /* distanza tra le caselle */
+}
+
+/* gli elementi con l'attributo hidden restano nascosti anche se una classe imposta display */
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: black;
+  background-image: url('../immagini/Background_Gioco.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Adumu', 'Arial Black', sans-serif;
+}
+
+/* ---------- STRUTTURA: tre colonne (tempi, gioco, comandi) ---------- */
+
+#pagina {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-areas: "tempi centro comandi";
+  min-height: 100vh;
+}
+
+#pannelloTempi { grid-area: tempi; }
+#centro        { grid-area: centro; }
+#comandi       { grid-area: comandi; }
+
+#centro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 8px;
+}
+
+#logo {
+  width: 4.2cm;
+  height: 4.2cm;
+}
+
+/* ---------- GRIGLIA ---------- */
+
+#griglia {
+  display: grid;
+  grid-template-columns: repeat(4, var(--cella));
+  grid-auto-rows: var(--cella);
+  gap: var(--spazio);
+  margin-top: 0.2cm;
+  padding: calc(var(--spazio) - 5px);
+  border: 5px solid black;
+  border-radius: 7px;
+  background-color: var(--verde);
+}
+
+.cella {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  background-color: white;
+  font-size: calc(var(--cella) * 0.33);
+  cursor: pointer;
+  user-select: none;
+}
+
+.cella.nera {
+  background-color: black;
+  color: white;
+  cursor: default;
+}
+
+/* ---------- TEMPO E RECORD (colonna sinistra) ---------- */
+
+#pannelloTempi {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 7vw;
+}
+
+.riquadro-verde {
+  margin: 0;
+  padding: 10px;
+  border: 3px solid white;
+  border-radius: 5px;
+  background-color: var(--verde);
+  color: white;
+}
+
+#record {
+  margin-top: 2vh;
+  font-size: 30px;
+}
+
+#riquadroTempo {
+  margin-top: 22vh;
+}
+
+#tempo {
+  display: inline-block;
+  font-size: 20px;
+}
+
+#timer {
+  margin-top: 14px;
+  padding: 10px 10px 0;
+  font-size: 100px;
+  line-height: 1.1;
+}
+
+#nuovoRecord {
+  margin-top: 6vh;
+  font-size: 30px;
+  text-align: center;
+}
+
+/* ---------- PULSANTI (colonna destra) ---------- */
+
+#comandi {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 2vh 1.2vw 0 0;
+}
+
+#comandi button {
+  height: 90px;
+  font-family: inherit;
+  color: white;
+  cursor: pointer;
+}
+
+#bottoneDocumentazione,
+#bottoneInversioneComandi {
+  padding: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10%;
+  font-size: 20px;
+}
+
+#bottoneDocumentazione {
+  background-color: var(--beige);
+}
+
+#bottoneInversioneComandi {
+  background-color: var(--verde);
+}
+
+/* Comandi invertiti attivi: colore più scuro e bordo bianco */
+#bottoneInversioneComandi.attivo {
+  background-color: #3f9a1d;
+  border-color: white;
+}
+
+#bottoneDocumentazione:active,
+#bottoneInversioneComandi:active {
+  box-shadow: 0 5px white;
+  transform: translateY(4px);
+}
+
+#navMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 4px;
+  border: none;
+  background: none;
+}
+
+#navMenu:hover {
+  background-color: lightgrey;
+}
+
+.linea {
+  display: block;
+  width: 1.5cm;
+  height: 0.2cm;
+  margin: 0.2cm 0;
+  border: 2px solid black;
+  border-radius: 7px;
+  background-color: var(--beige);
+}
+
+/* ---------- MENU A TENDINA ---------- */
+
+.menuScomparsa {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 0;
+  height: 100%;
+  overflow-x: hidden;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: width 0.5s, visibility 0.5s;
+}
+
+.menuScomparsa.aperto {
+  width: 100%;
+  visibility: visible;
+}
+
+#pulsanteChiudi {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  border: none;
+  background: none;
+  font-size: 60px;
+  color: var(--grigio);
+  cursor: pointer;
+}
+
+#pulsanteChiudi:hover {
+  color: var(--verde);
+}
+
+#contenutoMenuScomparsa {
+  position: relative;
+  top: 10%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.oggettiMenu {
+  display: block;
+  margin: 0;
+  padding: 8px;
+  font-size: 36px;
+  color: var(--grigio);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a.oggettiMenu:hover,
+a.oggettiMenu:focus,
+a.oggettiMenu:active {
+  color: var(--verde);
+}
+
+#ciao {
+  margin-bottom: 24px;
+}
+
+.titolo-vittoria {
+  margin: 0;
+  font-size: 90px;
+  color: #ecc230;
+}
+
+.tempo-finale {
+  margin: 0 0 16px;
+  font-size: 36px;
+  color: white;
+}
+
+.messaggio-menu {
+  min-height: 1.4em;
+  margin: 0 0 8px;
+  font-size: 22px;
+  color: var(--verde);
+}
+
+/* In caso di vittoria i riquadri del tempo restano visibili sopra il menu (schermi larghi) */
+@media (min-width: 900px) {
+  body.vittoria #pannelloTempi {
+    position: relative;
+    z-index: 30;
+  }
+}
+
+/* ---------- SCHERMI STRETTI (tablet e telefoni) ---------- */
+
+@media (max-width: 899px) {
+  :root {
+    /* le caselle si adattano alla larghezza dello schermo */
+    --cella: min(100px, calc((100vw - 76px) / 4.6));
+    --spazio: calc(var(--cella) * 0.2);
+  }
+
+  #pagina {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "centro comandi"
+      "tempi  tempi"
+      "griglia griglia";
+    align-items: start;
+    min-height: 0;
+    padding: 10px 12px 24px;
+    row-gap: 12px;
+  }
+
+  /* il logo resta in alto a sinistra, la griglia scende sotto i tempi */
+  #centro {
+    display: contents;
+  }
+
+  #logo {
+    grid-area: centro;
+    width: 80px;
+    height: 80px;
+  }
+
+  #griglia {
+    grid-area: griglia;
+    justify-self: center;
+    margin-top: 0;
+  }
+
+  #comandi {
+    gap: 8px;
+    padding: 0;
+  }
+
+  #comandi button {
+    height: 64px;
+  }
+
+  #bottoneDocumentazione,
+  #bottoneInversioneComandi {
+    padding: 8px;
+    font-size: 15px;
+  }
+
+  .linea {
+    width: 1cm;
+    height: 0.15cm;
+    margin: 0.12cm 0;
+  }
+
+  #pannelloTempi {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0;
+  }
+
+  #record,
+  #riquadroTempo,
+  #nuovoRecord {
+    margin: 0;
+  }
+
+  #record {
+    font-size: 18px;
+  }
+
+  #riquadroTempo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #tempo {
+    font-size: 16px;
+  }
+
+  #timer {
+    margin: 0;
+    padding: 6px 10px 2px;
+    font-size: 40px;
+  }
+
+  #nuovoRecord {
+    flex-basis: 100%;
+    font-size: 20px;
+  }
+
+  #pulsanteChiudi {
+    right: 20px;
+  }
+
+  .oggettiMenu {
+    font-size: 28px;
+  }
+
+  .titolo-vittoria {
+    font-size: 56px;
+  }
+
+  .tempo-finale {
+    font-size: 28px;
+  }
+}

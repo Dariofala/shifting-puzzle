@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shifting Puzzle – Classifica</title>
+  <link rel="icon" type="image/png" href="../immagini/SHIFTING_PUZZLE.png">
+  <link rel="stylesheet" href="../css/classifica.css">
+</head>
+<body>
+  <h1>Classifica</h1>
+
+  <div class="contenitore-tabella">
+    <table id="classifica">
+      <thead>
+        <tr id="intestazione">
+          <th scope="col">Rank</th>
+          <th scope="col">Utente</th>
+          <th scope="col">Ultimo accesso</th>
+          <th scope="col">Best</th>
+        </tr>
+      </thead>
+      <tbody id="righeClassifica"></tbody>
+    </table>
+  </div>
+  <p id="messaggioClassifica" class="messaggio" role="status"></p>
+
+  <script src="../javascript/gestioneDB.js"></script>
+  <script src="../javascript/utilita.js"></script>
+  <script src="../javascript/classifica/ClassificaGestione.js"></script>
+</body>
+</html>
